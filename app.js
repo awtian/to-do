@@ -4,17 +4,18 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const FB = require('fb');
 
 
 //Routes
 const todo = require('./routes/todo');
-const users = require('./routes/users');
+const user = require('./routes/user');
 
 //start express
 const app = express();
 
 //start dependencies
-mongoose.connect('mongodb://localhost/to-do');
+mongoose.connect('mongodb://localhost/todo');
 app.use(cors())
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -23,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 //routing
-app.use('/', users);
+app.use('/', user);
 app.use('/todo', todo);
 
 // catch 404 and forward to error handler

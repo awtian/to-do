@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const FB = require('fb');
+require('dotenv').config()
 
 
 //Routes
@@ -15,6 +16,7 @@ const user = require('./routes/user');
 const app = express();
 
 //start dependencies
+
 mongoose.connect('mongodb://localhost/todo');
 app.use(cors())
 app.use(logger('dev'));

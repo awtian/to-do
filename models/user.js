@@ -21,18 +21,18 @@ userSchema.statics.findOneOrCreate = function (token, cb) {
       let userdata = {name: data.name, email: data.email}
 
       self.findOne( userdata )
-        
+
         .then(result => {
           if (result) { 
-            jwt.sign({name: result.name, email: result.email}, 'testkey', (err, tok) => {
-              cb(tok, result)
+            jwt.sign({_id: result._id, name: result.name, email: result.email}, process.env.SECRET_KEY, (err, tok) => {
+              cb(tok, {"logged in": result})
             })
           }
           else {
             self.create(userdata)
               .then(cresult => {
-                let jwtoken = jwt.sign({name: cresult.name, email: cresult.email}, 'testkey')
-                cb(jwtoken, cresult)
+                let jwtoken = jwt.sign({_id: result._id, name: cresult.name, email: cresult.email}, process.env.SECRET_KEY)
+                cb(jwtoken, {"new user": cresult})
               })
           }
         })

@@ -17,7 +17,7 @@ const app = express();
 
 //start dependencies
 
-mongoose.connect('mongodb://localhost/todo');
+mongoose.connect(`mongodb+srv://admin:${process.env.MONGOPASS}@default-oc7kx.mongodb.net/test`);
 app.use(cors())
 app.use(logger('dev'));
 app.use(bodyParser.json());

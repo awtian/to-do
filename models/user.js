@@ -31,7 +31,7 @@ userSchema.statics.findOneOrCreate = function (token, cb) {
           else {
             self.create(userdata)
               .then(cresult => {
-                let jwtoken = jwt.sign({_id: result._id, name: cresult.name, email: cresult.email}, process.env.SECRET_KEY)
+                let jwtoken = jwt.sign({_id: cresult._id, name: cresult.name, email: cresult.email}, process.env.SECRET_KEY)
                 cb(jwtoken, {"new user": cresult})
               })
           }

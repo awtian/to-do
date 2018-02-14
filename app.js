@@ -17,7 +17,7 @@ const app = express();
 
 //start dependencies
 
-mongoose.connect(`mongodb+srv://admin:${process.env.MONGOPASS}@default-oc7kx.mongodb.net/test`);
+mongoose.connect(`mongodb://admin:${process.env.MONGOPASS}@default-shard-00-00-oc7kx.mongodb.net:27017,default-shard-00-01-oc7kx.mongodb.net:27017,default-shard-00-02-oc7kx.mongodb.net:27017/todo?ssl=true&replicaSet=default-shard-0&authSource=admin`);
 app.use(cors())
 app.use(logger('dev'));
 app.use(bodyParser.json());

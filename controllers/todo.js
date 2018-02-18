@@ -27,6 +27,34 @@ static myTodo (req, res) {
 
 }
 
+
+
+static myDoneTodo (req, res) {
+  
+  todoModel.find({
+    owner: req.headers.userid,
+    done: true
+  })
+    .then(todolist => res.send({message: 'this is your todolist!', details: todolist}))
+    .catch(err => res.status(500).send({message: "error fetching your todos", details: err}))
+
+
+}
+
+
+static myUndoneTodo (req, res) {
+  
+  todoModel.find({
+    owner: req.headers.userid,
+    done: false
+  })
+    .then(todolist => res.send({message: 'this is your todolist!', details: todolist}))
+    .catch(err => res.status(500).send({message: "error fetching your todos", details: err}))
+
+
+}
+
+
 static findById (req,res) {
 
   todoModel.find({
